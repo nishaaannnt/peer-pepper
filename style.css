@@ -1,30 +1,28 @@
-.container-fluid{
-    display: flex;
-    padding: 10px;
-}
-
-.main{
-    display: flex;
-    background-color: aqua;
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+*{
+    font-family: 'Poppins';
+    color: #fff;
+}   
+body{
     height: 100vh;
-    box-sizing: border-box;
+    background-color: #0b0c10;
+}
+.navbar{
+    display: flex;
+    background-color: #f25a1d;
 }
 
-.sidebar-left,.sidebar-right{
-    width: 20%;  
-    background-color: black;
-}
-
-.content{
-    width: 100%;
-    background-color: green;
+.card{
+    background-color: #f25a1d;
 }
 
 .foot{
-    background-color: #1b3058;
+    background-color: #f25a1d;
+    color: #63fdf1;
+    position: fixed;
     width: 100%;
     /* padding: 10px; */
     color: #fff;
-    position: absolute;
-    bottom:1;
-}
+    left: 0;
+    bottom:0;
+} 
