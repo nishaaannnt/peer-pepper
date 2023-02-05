@@ -1,0 +1,30 @@
+.container-fluid{
+    display: flex;
+    padding: 10px;
+}
+
+.main{
+    display: flex;
+    background-color: aqua;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.sidebar-left,.sidebar-right{
+    width: 20%;  
+    background-color: black;
+}
+
+.content{
+    width: 100%;
+    background-color: green;
+}
+
+.foot{
+    background-color: #1b3058;
+    width: 100%;
+    /* padding: 10px; */
+    color: #fff;
+    position: absolute;
+    bottom:1;
+}
