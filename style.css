@@ -1,23 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins");
 *{
     font-family: 'Poppins';
-    color: #fff;
+    color: #f0e9d2;
 }   
 body{
     height: 100vh;
-    background-color: #0b0c10;
+    background-color: #181d31;
 }
 .navbar{
     display: flex;
-    background-color: #f25a1d;
+    background-color: #678983;
 }
 
 .card{
-    background-color: #f25a1d;
+    background-color: #e6ddc4;
 }
 
 .foot{
-    background-color: #f25a1d;
+    background-color: #678983;
     color: #63fdf1;
     position: fixed;
     width: 100%;

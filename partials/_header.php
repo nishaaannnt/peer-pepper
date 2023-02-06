@@ -1,6 +1,6 @@
 <?php 
 echo'
-<nav class="navbar-dark navbar navbar-expand-lg text-light" style="background-color:#f25a1d">
+<nav class="navbar-dark navbar navbar-expand-lg text-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Peer Pepper</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,8 +36,8 @@ echo'
               <button class="btn btn-warning" type="submit">Search</button>
             </form>
             <div class="mx-2">
-            <button class="mx-1 btn btn-outline-warning">LogIn</button>
-            <button class="mx-1 btn btn-outline-warning">SignIn</button>
+            <button class="mx-1 btn btn-outline-warning"><a style="text_decoration:none;" href="partials/_login.php">Log In</a></button>
+            <button class="mx-1 btn btn-outline-warning"><a href="partials/_signup.php">Sign Up</a></button>
           </div>
           </div>
         </div>
