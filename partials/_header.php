@@ -36,8 +36,8 @@ echo'
               <button class="btn btn-warning" type="submit">Search</button>
             </form>
             <div class="mx-2">
-            <button class="mx-1 btn btn-outline-warning"><a style="text_decoration:none;" href="partials/_login.php">Log In</a></button>
-            <button class="mx-1 btn btn-outline-warning"><a href="partials/_signup.php">Sign Up</a></button>
+            <button class="mx-1 btn btn-outline-warning"><a href="partials/_login.php">Log In</a></button>
+            <button class="mx-1 btn btn-outline-warning"><a href="partial/_signup.php">Sign Up</a></button>
           </div>
           </div>
         </div>

@@ -18,11 +18,10 @@ body{
 
 .foot{
     background-color: #678983;
-    color: #63fdf1;
     position: fixed;
     width: 100%;
     /* padding: 10px; */
-    color: #fff;
+    color: #f0e9d2;
     left: 0;
     bottom:0;
 } 
