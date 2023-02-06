@@ -16,9 +16,9 @@ body{
     background-color: #f25a1d;
 }
 
+
 .foot{
     background-color: #f25a1d;
-    color: #63fdf1;
     position: fixed;
     width: 100%;
     /* padding: 10px; */
@@ -26,3 +26,8 @@ body{
     left: 0;
     bottom:0;
 } 
+
+.alert {
+    display: flex;
+    justify-content: space-between; 
+}
