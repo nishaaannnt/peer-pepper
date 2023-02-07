@@ -18,14 +18,14 @@
     <?php include 'partials/_dbconnect.php';?>
     <div class="container ">
 
-        <!-- GETTING INPUT FROM USER -->    
+        <!-- GETTING INPUT FROM USER -->
         <?php 
         $id=$_GET['threadid'];
     $alert=false;
        $method=$_SERVER['REQUEST_METHOD'];
         if($method=='POST'){
             $comment=$_POST['comment'];
-            $sql="INSERT INTO `comments`(`comment_content`, `thread_id`, `comment_by`, `comment_time`) VALUES ('$comment','$id','0', current_timestamp())";
+            $sql="INSERT INTO `comments`(`comment_content`, `thread_id`, `comment_by`, `comment_time`) VALUES ('$comment','$id','1', current_timestamp())";
             $result=mysqli_query($conn,$sql);
 
             $alert=true;
@@ -68,9 +68,11 @@
 
 
         <!-- FORM TO GET USER COMMENT -->
-        <div class="container p-5">
-            <hr>
-            <form action="<?php echo $_SERVER['REQUEST_URI'] ;?>" method="post">
+
+        <?php
+            if(isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
+            echo '<hr>
+            <form action="'.$_SERVER['REQUEST_URI'] .'" method="post">
                 <h1 class="mt-4 mb-4">REPLY</h1>
                 <div class="form-group mt-3">
                     <label for="desc" class="mb-2">ENTER YOUR REPLY</label>
@@ -79,10 +81,16 @@
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">Submit</button>
             </form>
-            <hr>
+            <hr>';
+            }
+            else{
+                echo '<hr><div class="container my-5">
+                <h3 class="">Login to give a comment</h3>
+            </div><hr>';
+            }
+?>
 
-            <h1 class="text-center mt-3 mb-4">--- REPLIES ---</h1>
-            <hr>
+        <div class="container p-5">
 
             <!-- DISPLAY THE REPLIES -->
             <?php

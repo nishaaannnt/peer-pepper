@@ -17,15 +17,17 @@ body{
 }
 
 
-.foot{
-    background-color: #f25a1d;
-    position: fixed;
+.foot {
+    background-color: #f25a1d !important; 
+    position: fixed !important;
     width: 100%;
     /* padding: 10px; */
     color: #fff;
     left: 0;
     bottom:0;
 } 
+
+
 
 .alert {
     display: flex;

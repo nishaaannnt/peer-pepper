@@ -1,4 +1,6 @@
 <?php 
+session_start();
+
 echo'
 <nav class="navbar-dark navbar navbar-expand-lg text-light" style="background-color:#f25a1d">
         <div class="container-fluid">
@@ -31,15 +33,75 @@ echo'
             </ul>
             <div class="mx-2">
             </div>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-warning" type="submit">Search</button>
-            </form>
-            <div class="mx-2">
-            <button class="mx-1 btn btn-outline-warning">LogIn</button>
-            <button class="mx-1 btn btn-outline-warning">SignUp</button>
-          </div>
-          </div>
+';  
+             
+             //CHANGING NAVBAR AS PER LOGIN OR NOT
+
+            if(isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
+             echo' <div class="mx-3 my-0 p-0">
+              <p class="p-0 m-0">Welcome '.$_SESSION['username']. '</p>
+              </div>
+              <button class="mx-1 btn btn-outline-warning"><a style="text-decoration: none;color:#fff;" href="partials/_logout.php">Log Out</a></button>'; 
+            }
+            else{
+              echo'
+              <div class="mx-2">
+              <button class="mx-1 btn btn-outline-warning"><a style="text-decoration: none;color:#fff;" href="login.php">Log In</a></button>
+              <button class="mx-1 btn btn-outline-warning"><a style="text-decoration: none;color:#fff;" href="signup.php">SignUp</a></button>
+              </div>';
+            }
+            echo'
+            </div>
         </div>
-      </nav>'
+      </nav>';
+
+
+
+
+
+//ALERT FOR SIGNIN OR LOGIN
+      if(isset($_GET['signup'])&&$_GET['signup']=="true"){
+        echo'
+        <div class="alert alert-success alert-dismissible fade show my-0" role="alert">
+              <strong class="text-dark">Success!</strong> You can now login.
+              <button type="button" class="close bg-dark" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        ';
+      }
+      else if(isset($_GET['signup'])&&$_GET['signup']=="false")
+      { 
+        $prob=$_GET['error'];
+          echo'
+          <div class="alert alert-warning alert-dismissible fade show my-0" role="alert">
+                <strong class="text-dark">Failed!</strong>' .$prob. '
+                <button type="button" class="close bg-dark" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          ';
+      }
+      if(isset($_GET['login'])&&$_GET['login']=="true"){
+        echo'
+        <div class="alert alert-success alert-dismissible fade show my-0" role="alert">
+              <strong class="text-dark">Success!</strong> You are loggedin.
+              <button type="button" class="close bg-dark" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        ';
+      }
+      else if(isset($_GET['login'])&&$_GET['login']=="false")
+      { 
+        $prob=$_GET['error'];
+          echo'
+          <div class="alert alert-warning alert-dismissible fade show my-0" role="alert">
+                <strong class="text-dark">Failed!</strong>' .$prob. '
+                <button type="button" class="close bg-dark" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          ';
+      }
       ?>

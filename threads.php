@@ -29,14 +29,14 @@
         }
    ?>
 
-   <!-- CODE TO GET THE DISCUSSION INPUT FROM USER -->
+   <!-- CODE TO GET THE DISCUSSION INPUT FROM USER NOT DISPLAYED -->
     <?php 
     $alert=false;
        $method=$_SERVER['REQUEST_METHOD'];
         if($method=='POST'){
             $t_title=$_POST['title'];
             $t_desc=$_POST['description'];
-            $sql="INSERT INTO `threads` (`thread_title`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `timestamp`) VALUES ('$t_title', '$t_desc', '$id', '0', current_timestamp())";
+            $sql="INSERT INTO `threads` (`thread_title`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `timestamp`) VALUES ('$t_title', '$t_desc', '$id', '1', current_timestamp())";
             $result=mysqli_query($conn,$sql);
 
             $alert=true;
@@ -54,38 +54,49 @@
         }
    ?>
 
-   <!-- DISPLAYING THE DISCUSSIONS -->
+   <!-- DISPLAYING THE DISCUSSIONS TOPIC-->
    <?php
         echo '
             <div class="container bg-secondary mb-1" style="min-height:300px;">
                 <h1 class="py-5 m-3 mt-5 forum-head display-4"><b>'.$catname.' Section </b></h1>
 
-            <p class="py-3 m-1">'.$desc.'</p>
+            <h4 class="py-3 m-1">'.$desc.'</h4>
             </div>';
    ?>
 
-    <!-- DISCUSSION SECTION -->
-    <div class="container p-5">
+    <!-- START DISCUSSION SECTION -->
+    <!-- IF LOGGEN IN THEN CAN INPUT DISCUSSION -->
+    <?php
+
+    if(isset($_SESSION['loggedin'])&&$_SESSION['loggedin']==true){
+    echo '<div class="container p-5">
         <hr>
-        <form action="<?php echo $_SERVER['REQUEST_URI'] ;?>" method="post">
+        <form action="'. $_SERVER["REQUEST_URI"].' " method="post">
             <h2 class="mt-4 mb-4">START A DISCUSSION</h2>
             <div class="form-group mt-3">
                 <label for="title" class="mb-2">Question Title</label>
                 <input type="text" class="form-control" name="title" id="title"
-                    placeholder="Please keep your title very clear.">
+                placeholder="Please keep your title very clear.">
             </div>
             <div class="form-group mt-3">
                 <label for="desc" class="mb-2">Elaborate your Question</label>
                 <textarea name="description" class="form-control" id="description" cols="30" rows="6"
-                    placeholder="Your Question"></textarea>
+                placeholder="Your Question"></textarea>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Submit</button>
         </form>
         <hr>
         <h1 class="mt-4 mb-4 text-center">DISCUSSIONS</h1>
-        <hr>
-
-
+        <hr>';
+    }
+    else{
+        echo '<hr><div class="container my-5">
+        <h1 class="mt-4 mb-4">START A DISCUSSION</h1>
+        <h3 class="">Login to start a Discussion!</h3>
+    </div><hr>';
+    }
+    ?> 
+        
         <!-- ALL THE DISCUSSIONS -->
         <?php
         $id=$_GET['catid'];
@@ -98,12 +109,18 @@
             $id=$row['thread_id'];
             $desc=$row['thread_desc'];
             $time=$row['timestamp'];
+            $tuser_id=$row['thread_user_id'];
+            $sql2="SELECT username FROM `users` WHERE sno='$tuser_id';";
+            $result2=mysqli_query($conn,$sql2);
+            $row2=mysqli_fetch_assoc($result2);
+            $un=$row2['username'];
             echo '
-            <div class="med d-flex mt-2 bg-secondary">
-                <img src="static/user.jpg" class="m-3" width="70px"alt="un">
-                <div class="media-body m-3 w-100">
-                    <div class="container " style="display:flex;justify-content:space-between;">
-                        <h5><a class="text-light"href="thread.php?threadid='.$id.'">'.$ttitle.'</a></h5>
+            <div class="container med d-flex mt-2 bg-secondary">
+                <img src="static/user.jpg" class="m-3" width="80px"alt="un">
+                <div class="media-body my-3 w-100">
+                    <p class="p-0 m-0"><b>by '.$un.'</b></p>
+                    <div class="container mt-1 px-0" style="display:flex;justify-content:space-between;">
+                        <h5><a class="text-light mt-2"href="thread.php?threadid='.$id.'">'.$ttitle.'</a></h5>
                         <p>'.$time.'</p>
                     </div>
                     <p>'.$desc.'</p>
